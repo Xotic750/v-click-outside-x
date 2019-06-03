@@ -13,6 +13,7 @@
   "browser": "dist/v-click-outside-x.min.js",
   "main": "dist/v-click-outside-x.js",
   "module": "src/index.js",
+  "typings": "types/index.d.ts",
   "scripts": {
     "build:base": "webpack --bail --progress --profile --colors",
     "build": "cross-env NODE_ENV=production npm run build:base --",
