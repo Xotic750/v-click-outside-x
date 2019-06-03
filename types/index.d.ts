@@ -1,7 +1,7 @@
-import Vue, { VNodeDirective } from 'vue';
+import { PluginFunction, DirectiveOptions } from 'vue';
 
-declare function install(Vue: Vue): any;
-declare var directive: VNodeDirective;
+declare var install: PluginFunction<any>;
+declare var directive: DirectiveOptions;
 
 export {
   install,
