@@ -61,10 +61,11 @@ module.exports = function generateConfig(env) {
    * @type {string}
    * @see {@link https://git-scm.com/docs/git-describe}
    */
-  const DESCRIBE = childProcess
-    .spawnSync('git', ['describe', '--dirty'])
-    .output[1].toString()
-    .trim();
+  //TODO:此处代码报错无法打包
+  // const DESCRIBE = childProcess
+  //   .spawnSync('git', ['describe', '--dirty'])
+  //   .output[1].toString()
+  //   .trim();
 
   /**
    * The date as of now.
@@ -234,7 +235,8 @@ module.exports = function generateConfig(env) {
             author: PACKAGE.author.name,
             copywrite: PACKAGE.copyright,
             date: NOW,
-            describe: DESCRIBE,
+            //TODO:此处代码报错无法打包
+            describe: 'DESCRIBE', //DESCRIBE,
             description: PACKAGE.description,
             file: '[file]',
             hash: '[hash]',

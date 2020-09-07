@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2018-present",
-  "date": "2020-01-14T15:27:52.362Z",
-  "describe": "",
+  "date": "2020-09-07T03:27:36.371Z",
+  "describe": "DESCRIBE",
   "description": "Vue directive to react on clicks outside an element.",
   "file": "v-click-outside-x.js",
-  "hash": "985cfe535e0f8da2f484",
+  "hash": "d5ca56c35af850f64f52",
   "license": "MIT",
-  "version": "4.1.0"
+  "version": "4.1.1-pi.1"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -20,7 +20,7 @@
 		exports["vClickOutsideX"] = factory();
 	else
 		root["vClickOutsideX"] = factory();
-})((function () {
+})((function() {
   'use strict';
 
   var ObjectCtr = {}.constructor;
@@ -156,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"a\":\"4.1.0\"}");
+module.exports = JSON.parse("{\"a\":\"4.1.1-pi.1\"}");
 
 /***/ }),
 /* 1 */
@@ -168,13 +168,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
 /* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 var _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(0, 1);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
 
 
 /**
@@ -198,7 +200,13 @@ var instancesList = [captureInstances, nonCaptureInstances];
  */
 
 var commonHandler = function onCommonEvent(context, instances, event, arg) {
+  var _event$path;
+
   var target = event.target;
+
+  if (target.shadowRoot && ((_event$path = event.path) === null || _event$path === void 0 ? void 0 : _event$path[0])) {
+    target = (_readOnlyError("target"), event.path[0]);
+  }
 
   var itemIteratee = function itemIteratee(item) {
     var el = item.el;
@@ -303,13 +311,13 @@ var directive = Object.defineProperties({}, {
 
       var arg = binding.arg || CLICK;
 
-      var normalisedBinding = _objectSpread({}, binding, {}, {
+      var normalisedBinding = _objectSpread(_objectSpread({}, binding), {
         arg: arg,
-        modifiers: _objectSpread({}, {
+        modifiers: _objectSpread(_objectSpread({}, {
           capture: false,
           prevent: false,
           stop: false
-        }, {}, binding.modifiers)
+        }), binding.modifiers)
       });
 
       var useCapture = normalisedBinding.modifiers.capture;
