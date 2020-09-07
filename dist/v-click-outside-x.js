@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2018-present",
-  "date": "2020-09-07T03:27:36.371Z",
+  "date": "2020-09-07T03:45:34.005Z",
   "describe": "DESCRIBE",
   "description": "Vue directive to react on clicks outside an element.",
   "file": "v-click-outside-x.js",
-  "hash": "d5ca56c35af850f64f52",
+  "hash": "645c8cc2d936a6ef6fc0",
   "license": "MIT",
   "version": "4.1.1-pi.1"
 }
@@ -20,7 +20,7 @@
 		exports["vClickOutsideX"] = factory();
 	else
 		root["vClickOutsideX"] = factory();
-})((function() {
+})((function () {
   'use strict';
 
   var ObjectCtr = {}.constructor;
@@ -176,8 +176,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 
 /**
  * @typedef {import("../types/index.d.ts")} VClickOutsidePlugin
@@ -200,12 +198,10 @@ var instancesList = [captureInstances, nonCaptureInstances];
  */
 
 var commonHandler = function onCommonEvent(context, instances, event, arg) {
-  var _event$path;
-
   var target = event.target;
 
-  if (target.shadowRoot && ((_event$path = event.path) === null || _event$path === void 0 ? void 0 : _event$path[0])) {
-    target = (_readOnlyError("target"), event.path[0]);
+  if (target.shadowRoot && event.path && event.path[0]) {
+    target = event.path[0];
   }
 
   var itemIteratee = function itemIteratee(item) {

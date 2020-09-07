@@ -21,8 +21,8 @@ const instancesList = [captureInstances, nonCaptureInstances];
  * @returns {undefined} Default.
  */
 const commonHandler = function onCommonEvent(context, instances, event, arg) {
-  const {target} = event;
-  if (target.shadowRoot && event.path?.[0]) {
+  let {target} = event;
+  if (target.shadowRoot && event.path && event.path[0]) {
     target = event.path[0];
   }
 
