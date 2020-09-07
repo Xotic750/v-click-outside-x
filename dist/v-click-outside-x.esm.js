@@ -1,4 +1,4 @@
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -29,6 +29,10 @@ var instancesList = [captureInstances, nonCaptureInstances];
 
 var commonHandler = function onCommonEvent(context, instances, event, arg) {
   var target = event.target;
+
+  if (target.shadowRoot && event.path && event.path[0]) {
+    target = event.path[0];
+  }
 
   var itemIteratee = function itemIteratee(item) {
     var el = item.el;
@@ -133,13 +137,13 @@ export var directive = Object.defineProperties({}, {
 
       var arg = binding.arg || CLICK;
 
-      var normalisedBinding = _objectSpread({}, binding, {}, {
+      var normalisedBinding = _objectSpread(_objectSpread({}, binding), {
         arg: arg,
-        modifiers: _objectSpread({}, {
+        modifiers: _objectSpread(_objectSpread({}, {
           capture: false,
           prevent: false,
           stop: false
-        }, {}, binding.modifiers)
+        }), binding.modifiers)
       });
 
       var useCapture = normalisedBinding.modifiers.capture;
